@@ -1,7 +1,7 @@
 import './ToDoList.css';
 
-function Title(data) {
-    return <div className="upper-box">To-do List Web</div>
+function Title({ title }) {
+  return <div className="upper-box">{title}</div>;
 }
 
 export default Title;
