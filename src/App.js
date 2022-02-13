@@ -21,6 +21,10 @@ function App() {
     localStorage.removeItem(key);
   }
 
+  function updateLocalStorageItem(updatedTask) {
+    localStorage.setItem(updatedTask.id, JSON.stringify(updatedTask));
+  }
+
   function addTask(description) {
     const newTask = { id: uuidv4(), description: description, status: 'todo' };
     const newList = _.clone(list);
@@ -35,8 +39,16 @@ function App() {
     setList(newList);
   }
 
-  function checkTask() {
-    // checkTask
+  function checkTask(task, status) {
+    const updatedTask = { ...task, status: status ? 'done' : 'todo' };
+    updateLocalStorageItem(updatedTask);
+    const newList = list.map((item) => {
+      if (item.id === task.id) {
+        item.status = status ? 'done' : 'todo';
+      }
+      return item;
+    });
+    setList(newList);
   }
 
   function hideModal() {
@@ -50,7 +62,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <ToDoList tasks={list} onRemove={removeTask} />
+        <ToDoList tasks={list} onRemove={removeTask} onCheck={checkTask} />
         <NewToDoButton onClick={showModal} />
         <ToDoModal show={modal} onHide={hideModal} onSave={addTask} />
       </header>

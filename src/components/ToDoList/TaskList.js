@@ -1,8 +1,8 @@
 import Task from './Task';
 import './ToDoList.css';
 
-function TaskList({ tasks, onRemove }) {
-  const taskList = tasks.map((task) => <Task key={task.id} data={task} onRemove={onRemove} />);
+function TaskList({ tasks, onRemove, onCheck }) {
+  const taskList = tasks.map((task) => <Task key={task.id} data={task} onRemove={onRemove} onCheck={onCheck} />);
 
   return (
     <div className="middle-box">
