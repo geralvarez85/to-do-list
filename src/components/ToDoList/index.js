@@ -3,7 +3,7 @@ import Title from './Title';
 import TaskList from './TaskList';
 import './ToDoList.css';
 
-function ToDoList({ tasks }) {
+function ToDoList({ tasks, onRemove }) {
   return (
     <>
       <Container>
@@ -11,7 +11,7 @@ function ToDoList({ tasks }) {
           <Col>
             <div className="text-center">
               <Title title="To-do List" />
-              <TaskList tasks={tasks} />
+              <TaskList tasks={tasks} onRemove={onRemove} />
             </div>
           </Col>
         </Row>
